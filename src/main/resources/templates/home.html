@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<header th:replace="fragments/header.html :: header"> </header>
+	<h1>Liste des films</h1>
+	<table>
+		<tr th:each="film:${films}">
+			<td><a th:href="@{'/film/detail/'+${film.id}}">[[${film.title}]]</a></td> 
+			<td th:text="${film.releaseYear}"></td>
+			<td>[[${film.duration}]] minutes</td>
+			<td th:text="${film.synopsis}"></td>
+		</tr>
+
+	
+	</table>
+</body>
+</html>
