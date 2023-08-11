@@ -4,11 +4,15 @@ import java.util.ArrayList;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import fr.eni.filmotheque.bll.FilmService;
 import fr.eni.filmotheque.bo.Film;
+import jakarta.validation.Valid;
 
 @Controller
 public class FilmothequeController {
@@ -44,8 +48,21 @@ public class FilmothequeController {
 	}
 	
 	@GetMapping("/film/ajouter")
-	public String addMovie() {
+	public String displayAddMovie(Model model) {
+		model.addAttribute("film", new Film());
 		return "addMovie";
+	}
+	
+	@PostMapping("/film/ajouter")
+	public String addMovie(
+			@Valid @ModelAttribute("film") Film film,
+			BindingResult validationResult) {
+		if(validationResult.hasErrors()) {
+			return "addMovie";
+		}
+		
+		this.fs.insertFilm(film);
+		return "redirect:/home";
 	}
 	
 	

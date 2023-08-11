@@ -9,6 +9,69 @@
 
 <header th:replace="fragments/general.html :: header"> </header>
 
-	<h1>Ajouter un film</h1>
+	<form th:action="@{/film/ajouter}" th:object=${film} method="post" >
+
+		<div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
+			<p>Il y a eu une erreur</p>
+		</div>
+		
+
+		
+		<fieldset>
+			<legend>Ajouter un film</legend>
+			<div>
+				<div class="form-group">
+				    <label for="title" class="form-label mt-4">Titre : </label>
+				    <input type="text" th:field="*{title}" id="title" class="form-control" placeholder="le titre ici">
+			   		
+			
+			   		<span class="text-danger col-6" th:if="${#fields.hasErrors('title')}">
+			   			<ul>
+			   				<li th:each="error: ${#fields.errors('title')}" th:text="${error}"></li>
+			   			</ul>
+			   		</span>
+		
+			    </div>
+			    
+			    <div class="form-group">
+				    <label for="releaseYear" class="form-label mt-4">Date de sortie : </label>
+				    <input type="text" th:field="*{releaseYear}" id="releaseYear" class="form-control" placeholder="la date ici">
+		
+					<span class="text-danger col-6" th:if="${#fields.hasErrors('releaseYear')}">
+			   			<ul>
+			   				<li th:each="error: ${#fields.errors('releaseYear')}" th:text="${error}"></li>
+			   			</ul>
+			   		</span>
+		
+		
+			    </div>
+			    
+			     <div class="form-group">
+				    <label for="duration" class="form-label mt-4">Durée du film (en minutes) : </label>
+				    <input type="number" th:field="*{duration}" id="duration" class="form-control" placeholder="60">
+			
+					<span class="text-danger col-6" th:if="${#fields.hasErrors('duration')}">
+			   			<ul>
+			   				<li th:each="error: ${#fields.errors('duration')}" th:text="${error}"></li>
+			   			</ul>
+			   		</span>
+			   	
+			    </div>
+				
+			    <div class="form-group">
+			    	<label for="synopsis" class="form-label mt-4">Synopsis : </label>
+			    	<textarea class="form-control"  th:field="*{synopsis}" id="synopsis" rows="3"></textarea>
+			    	
+			   		<span class="text-danger col-6" th:if="${#fields.hasErrors('synopsis')}">
+			   			<ul>
+			   				<li th:each="error: ${#fields.errors('synopsis')}" th:text="${error}"></li>
+			   			</ul>
+			   		</span>
+			    </div>
+			    
+			    <button type="submit" class="btn btn-primary">Ajouter</button> 
+			</div>
+		</fieldset>
+	</form>
 </body>
 </html>
