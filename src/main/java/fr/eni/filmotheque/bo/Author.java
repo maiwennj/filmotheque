@@ -11,4 +11,7 @@ public class Author {
 	int id;
 	String lastName;
 	String firstName;
+	
+	
+	
 }
