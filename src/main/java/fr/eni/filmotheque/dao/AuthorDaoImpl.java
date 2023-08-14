@@ -2,8 +2,10 @@ package fr.eni.filmotheque.dao;
 
 import java.util.ArrayList;
 
-import fr.eni.filmotheque.bo.Author;
+import org.springframework.stereotype.Repository;
 
+import fr.eni.filmotheque.bo.Author;
+@Repository
 public class AuthorDaoImpl implements AuthorDao{
 	
 	private ArrayList<Author> authors = new ArrayList<>();

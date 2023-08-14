@@ -2,9 +2,12 @@ package fr.eni.filmotheque.bll;
 
 import java.util.ArrayList;
 
+import org.springframework.stereotype.Service;
+
 import fr.eni.filmotheque.bo.Author;
 import fr.eni.filmotheque.dao.AuthorDao;
 
+@Service
 public class AuthorServiceImpl implements AuthorService{
 	
 	private AuthorDao ad;
