@@ -2,8 +2,11 @@ package fr.eni.filmotheque.dao;
 
 import java.util.ArrayList;
 
+import org.springframework.stereotype.Repository;
+
 import fr.eni.filmotheque.bo.Genre;
 
+@Repository
 public class GenreDaoImpl implements GenreDao{
 	
 	private ArrayList<Genre> genres = new ArrayList<>();

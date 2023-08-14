@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.stereotype.Repository;
 
 import fr.eni.filmotheque.bo.Film;
+import fr.eni.filmotheque.bo.Genre;
 
 @Repository
 public class FilmDaoImpl implements FilmDao {
@@ -45,6 +46,10 @@ public class FilmDaoImpl implements FilmDao {
 
 	@Override
 	public void insertFilm(Film film) {
+		// ATTENTION AUX AJOUTS
+		/**
+		 * trouver un moyen de set l'id des films, actuellement, tout est à 0
+		 */
 		films.add(film);
 	}
 }
