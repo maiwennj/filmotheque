@@ -6,18 +6,21 @@
 		<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
 	</head>
 	<body>
-		<header th:replace="fragments/general.html :: header"> </header>
-		<main>
-			<h1>Liste des films</h1>
-			<table>
-				<tr th:each="film:${films}">
-					<td><a th:href="@{'/film/detail/'+${film.id}}">[[${film.title}]]</a></td> 
-					<td th:text="${film.releaseYear}"></td>
-					<td>[[${film.duration}]] minutes</td>
-					<td th:text="${film.synopsis}"></td>
-				</tr>
-			</table>
-		</main>
-		
+		<div class="container-fluid">
+			<header th:replace="fragments/general.html :: header"> </header>
+			<main>
+				<div class="row text-center">
+					<h1>Liste des films</h1>			
+				</div>
+				<table>
+					<tr th:each="film:${films}">
+						<td><a th:href="@{'/film/detail/'+${film.id}}">[[${film.title}]]</a></td> 
+						<td th:text="${film.releaseYear}"></td>
+						<td>[[${film.duration}]] minutes</td>
+						<td th:text="${film.synopsis}"></td>
+					</tr>
+				</table>
+			</main>
+		</div>
 	</body>
 </html>

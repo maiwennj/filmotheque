@@ -10,14 +10,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-public class Author implements Serializable{
+@Data @AllArgsConstructor @NoArgsConstructor
+public class Member implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue
 	private int id;
-	private String lastName;
-	private String firstName;
+	private String firstname;
+	private String lastname;
+	private String username;
+	private String password;
+	private boolean isAdmin;
+	
 }
