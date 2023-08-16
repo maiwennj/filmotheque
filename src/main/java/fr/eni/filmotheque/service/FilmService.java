@@ -9,11 +9,12 @@ import fr.eni.filmotheque.bo.Genre;
 public interface FilmService {
 
 	List<Film> selectAll();
-	Film selectOneById(int id);
 	List<Genre> getGenres();
 	List<Author> getAuthors();
+	Film selectOneById(int id);
 	Genre getGenreById(int id);
 	Author getAuthorById(int id);
 	void insertFilm(Film film);
-	
+	void insertGenre(Genre genre);
+	void insertAuthor(Author author);
 }
