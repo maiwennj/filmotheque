@@ -14,9 +14,7 @@
 		<div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
 			<p>Il y a eu une erreur</p>
 		</div>
-		
-
-		
+ 
 		<fieldset>
 			<legend>Ajouter un film</legend>
 			<div>
@@ -42,20 +40,16 @@
 			   				<li th:each="error: ${#fields.errors('releaseYear')}" th:text="${error}"></li>
 			   			</ul>
 			   		</span>
-		
-		
 			    </div>
 			    
 			     <div class="form-group">
 				    <label for="duration" class="form-label mt-4">Durée du film (en minutes) : </label>
 				    <input type="number" th:field="*{duration}" id="duration" class="form-control" placeholder="60">
-			
 					<span class="text-danger col-6" th:if="${#fields.hasErrors('duration')}">
 			   			<ul>
 			   				<li th:each="error: ${#fields.errors('duration')}" th:text="${error}"></li>
 			   			</ul>
 			   		</span>
-			   	
 			    </div>
 				
 			    <div class="form-group">
@@ -69,9 +63,80 @@
 			   		</span>
 			    </div>
 			    
+			    <div class="mb-3">
+	                <label for="actors" class="form-label">Acteurs</label>
+	                <select id="actors" class="form-control" multiple >
+	                    <option th:each="actor: ${actors}" 
+	                            th:value="${actor.id}" 
+	                            th:text="${actor.lastName+' '+actor.firstName}" ></option>
+	                </select>
+              	</div>   
+			    
+			    <div class="mb-3">
+	                <label for="director" class="form-label">Réalisateur</label>
+	                <select id="director" class="form-control" >
+	                    <option th:each="director: ${actors}" 
+	                            th:value="${director.id}" 
+	                            th:text="${director.lastName+' '+director.firstName}" ></option>
+	                </select>
+              	</div>   
+			    
+			    
 			    <button type="submit" class="btn btn-primary">Ajouter</button> 
 			</div>
 		</fieldset>
 	</form>
+
+	
+	
+	<!-- 
+	<div class="container-fluid">
+        <header></header>
+        <main>
+           <div class="row text-center">
+            <h1>Détails du film</h1>
+           </div>             
+           <div class="row col-6 offset-3" th:object="${film}">
+              <div class="mb-3">
+                <label for="titre" class="form-label">Titre</label>
+                <input type="text" readonly class="form-control" id="titre" th:field="*{titre}" >
+              </div>
+              <div class="mb-3">
+                <label for="annee" class="form-label">Année</label>
+                <input type="text" readonly class="form-control" id="annee" th:field="*{annee}" >
+              </div> 
+              <div class="mb-3">
+                <label for="duree" class="form-label">Durée</label>
+                <input type="text" readonly class="form-control" id="duree" th:field="*{duree}">
+              </div>   
+              <div class="mb-3">
+                <label for="synopsis" class="form-label">Synopsis</label>
+                <textarea id="synopsis" readonly class="form-control" rows="3" th:field="*{synopsis}" ></textarea>
+              </div>  
+              <div class="mb-3">
+                <label for="genre" class="form-label">Genre</label>
+                <input type="text" readonly class="form-control" id="genre"  th:field="*{genre.libelle}" />
+              </div> 
+               <div class="mb-3">
+                <label for="realisateur" class="form-label">Réalisateur</label>
+                <input type="text"  class="form-control" id="realisateur" th:value="*{realisateur.nom+' '+realisateur.prenom}" />
+              </div> 
+              <div class="mb-3">
+                <label for="acteurs" class="form-label">Acteurs</label>
+                <select id="acteurs" readonly class="form-control" multiple >
+                    <option th:each="acteur: ${film.acteurs}" 
+                            th:value="${acteur.id}" 
+                            th:text="${acteur.nom+' '+acteur.prenom}" ></option>
+                </select>
+              </div>                                                                                    
+           </div>
+        </main>
+        <footer></footer>
+    </div>
+	
+	
+	 -->
+	
+	
 </body>
 </html>

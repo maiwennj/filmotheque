@@ -58,4 +58,14 @@ public class FilmServiceMock implements FilmService{
 		listFilms.add(film);
 	}
 
+	@Override
+	public void insertGenre(Genre genre) {
+		listGenres.add(genre);
+	}
+
+	@Override
+	public void insertAuthor(Author author) {
+		listAuthors.add(author);
+	}
+
 }
