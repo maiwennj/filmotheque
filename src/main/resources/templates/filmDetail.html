@@ -6,16 +6,51 @@
 		<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
 	</head>
 	<body>
-		<header th:replace="fragments/general.html :: header"> </header>
-		<main>
-			<h1>Affichage d'un film</h1>
-			<div>
-				<h2>[[${film.title}]]</h2>
-				<p>Année de sortie : [[${film.releaseYear}]]</p>
-				<p>Durée : [[${film.duration}]] minutes</p>
-				<p>[[${film.synopsis}]]</p>
-			
-			</div>
-		</main>
+	<div class="container-fluid">
+			<header th:replace="fragments/general.html :: header"> </header>
+			<main>
+				<div class="row text-center">
+					<h1>Détail d'un film</h1>			
+				</div>
+
+        
+           <div class="row col-6 offset-3" th:object="${film}">
+              <div class="mb-3">
+                <label for="title" class="form-label">Titre</label>
+                <input type="text" readonly class="form-control" id="title" th:field="*{title}" >
+              </div>
+              <div class="mb-3">
+                <label for="releaseYear" class="form-label">Année</label>
+                <input type="text" readonly class="form-control" id="releaseYear" th:field="*{releaseYear}" >
+              </div> 
+              <div class="mb-3">
+                <label for="duration" class="form-label">Durée</label>
+                <input type="text" readonly class="form-control" id="duration" th:field="*{duration}">
+              </div>   
+              <div class="mb-3">
+                <label for="synopsis" class="form-label">Synopsis</label>
+                <textarea id="synopsis" readonly class="form-control" rows="3" th:field="*{synopsis}" ></textarea>
+              </div>  
+              <div class="mb-3">
+                <label for="genre" class="form-label">Genre</label>
+                <input type="text" readonly class="form-control" id="genre"  th:field="*{genre.label}" />
+              </div> 
+               <div class="mb-3">
+                <label for="director" class="form-label">Réalisateur</label>
+                <input type="text" readonly class="form-control" id="director" th:value="*{director.lastName+' '+director.firstName}" />
+              </div> 
+              <div class="mb-3">
+                <label for="actors" class="form-label">Acteurs</label>
+                <select id="actors" readonly class="form-control" multiple >
+                    <option th:each="actor: ${film.actors}" 
+                            th:value="${actor.id}" 
+                            th:text="${actor.lastName+' '+actor.firstName}" ></option>
+                </select>
+              </div>                                                                                    
+           </div>
+        </main>
+        <footer></footer>
+    </div>
+
 	</body>
 </html>
