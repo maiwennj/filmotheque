@@ -28,14 +28,14 @@ public class Film  implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-//	@NotBlank(message = "Vous devez renseigner un titre.")
+	@NotBlank(message = "Vous devez renseigner un titre.")
 	private String title;
-//	@NotBlank(message = "Vous devez renseigner une année de sortie.")
+	@NotBlank(message = "Vous devez renseigner une année de sortie.")
 	private String releaseYear;
-//	@Min(0)
+	@Min(0)
 	private int duration;
-//	@NotBlank(message = "Vous devez renseigner un synopsis.")
-//	@Size(min=0, max=500)
+	@NotBlank(message = "Vous devez renseigner un synopsis.")
+	@Size(min=0, max=500)
 	private String synopsis;
 
 	// Relations objets

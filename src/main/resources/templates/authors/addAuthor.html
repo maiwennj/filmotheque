@@ -15,7 +15,7 @@
 			<div class="row col-6 offset-3">
 				<form th:action="@{/auteurs/ajouter}" th:object=${author} method="post" >
 					<div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
-						<p>Il y a eu une erreur</p>
+						<p>Il y a eu une erreur.</p>
 					</div>
 	              	<div class="mb-3">
 		                <label for="firstname" class="form-label">Prénom : </label>
@@ -30,11 +30,11 @@
 		                <label for="lastname" class="form-label">Nom de famille : </label>
 		                <input type="text" class="form-control" id="lastname" th:field="*{lastName}" >
 		            </div> 
-			      <!--    		<span class="text-danger col-6" th:if="${#fields.hasErrors('title')}">
+			  		<span class="text-danger col-6" th:if="${#fields.hasErrors('lastName')}">
 			   			<ul>
-			   				<li th:each="error: ${#fields.errors('title')}" th:text="${error}"></li>
+			   				<li th:each="error: ${#fields.errors('lastName')}" th:text="${error}"></li>
 			   			</ul>
-			   		</span>-->
+			   		</span>
 				    <div class="mb-3">
 					    <button type="submit" class="btn btn-primary">Ajouter</button>
 				    </div>
