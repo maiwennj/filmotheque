@@ -11,9 +11,9 @@ public interface FilmService {
 	List<Film> selectAll();
 	List<Genre> getGenres();
 	List<Author> getAuthors();
-	Film selectOneById(int id);
-	Genre getGenreById(int id);
-	Author getAuthorById(int id);
+	Film selectOneById(Integer id);
+	Genre getGenreById(Integer id);
+	Author getAuthorById(Integer id);
 	void insertFilm(Film film);
 	void insertGenre(Genre genre);
 	void insertAuthor(Author author);

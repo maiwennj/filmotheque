@@ -1,142 +1,92 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<meta charset="UTF-8">
 		<title>Ajouter un film</title>
 		<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
 	</head>
-<body>
-
-<header th:replace="fragments/general.html :: header"> </header>
-
-	<form th:action="@{/film/ajouter}" th:object=${film} method="post" >
-
-		<div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
-			<p>Il y a eu une erreur</p>
-		</div>
- 
-		<fieldset>
-			<legend>Ajouter un film</legend>
-			<div>
-				<div class="form-group">
-				    <label for="title" class="form-label mt-4">Titre : </label>
-				    <input type="text" th:field="*{title}" id="title" class="form-control" placeholder="le titre ici">
-			   		
-			
-			   		<span class="text-danger col-6" th:if="${#fields.hasErrors('title')}">
-			   			<ul>
-			   				<li th:each="error: ${#fields.errors('title')}" th:text="${error}"></li>
-			   			</ul>
-			   		</span>
-		
-			    </div>
-			    
-			    <div class="form-group">
-				    <label for="releaseYear" class="form-label mt-4">Date de sortie : </label>
-				    <input type="text" th:field="*{releaseYear}" id="releaseYear" class="form-control" placeholder="la date ici">
-		
-					<span class="text-danger col-6" th:if="${#fields.hasErrors('releaseYear')}">
-			   			<ul>
-			   				<li th:each="error: ${#fields.errors('releaseYear')}" th:text="${error}"></li>
-			   			</ul>
-			   		</span>
-			    </div>
-			    
-			     <div class="form-group">
-				    <label for="duration" class="form-label mt-4">Durée du film (en minutes) : </label>
-				    <input type="number" th:field="*{duration}" id="duration" class="form-control" placeholder="60">
-					<span class="text-danger col-6" th:if="${#fields.hasErrors('duration')}">
-			   			<ul>
-			   				<li th:each="error: ${#fields.errors('duration')}" th:text="${error}"></li>
-			   			</ul>
-			   		</span>
-			    </div>
+	<body>
+		<div class="container-fluid">
+			<header th:replace="fragments/general.html :: header"> </header>
+			<main>
+				<div class="row text-center">
+					<h1>Ajouter un film</h1>			
+				</div>
+				<div class="row col-6 offset-3" >
+					<form th:action="@{/films/ajouter}" th:object=${film} method="post" >
+						<div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
+							<p>Il y a eu une erreur</p>
+						</div>
+						
+						<div class="mb-3">
+			                <label for="title" class="form-label">Titre</label>
+			                <input type="text" class="form-control" id="title" th:field="*{title}" >
+				            <span class="text-danger col-6" th:if="${#fields.hasErrors('title')}">
+					   			<ul>
+					   				<li th:each="error: ${#fields.errors('title')}" th:text="${error}"></li>
+					   			</ul>
+					   		</span>
+				   		</div>
+					    
+					    <div class="mb-3">
+						    <label for="releaseYear" class="form-label">Date de sortie : </label>
+						    <input type="text" th:field="*{releaseYear}" id="releaseYear" class="form-control" placeholder="la date ici">
+							<span class="text-danger col-6" th:if="${#fields.hasErrors('releaseYear')}">
+					   			<ul>
+					   				<li th:each="error: ${#fields.errors('releaseYear')}" th:text="${error}"></li>
+					   			</ul>
+					   		</span>
+					    </div>
+					    
+					     <div class="mb-3">
+						    <label for="duration" class="form-label">Durée du film (en minutes) : </label>
+						    <input type="number" th:field="*{duration}" id="duration" class="form-control" placeholder="60">
+							<span class="text-danger col-6" th:if="${#fields.hasErrors('duration')}">
+					   			<ul>
+					   				<li th:each="error: ${#fields.errors('duration')}" th:text="${error}"></li>
+					   			</ul>
+					   		</span>
+					    </div>
+						
+					    <div class="mb-3">
+					    	<label for="synopsis" class="form-label">Synopsis : </label>
+					    	<textarea class="form-control"  th:field="*{synopsis}" id="synopsis" rows="3"></textarea>
+					   		<span class="text-danger col-6" th:if="${#fields.hasErrors('synopsis')}">
+					   			<ul>
+					   				<li th:each="error: ${#fields.errors('synopsis')}" th:text="${error}"></li>
+					   			</ul>
+					   		</span>
+					    </div>
+					    
+					    <div class="mb-3">
+			                <label for="genre" class="form-label">Genre</label>
+			                <select id="genre" class="form-select" th:field="*{genre}" >
+			                    <option th:each="genre: ${genres}" th:value="${genre.id}" th:text="${genre.label}" ></option>
+			                </select>
+		              	</div>   
+	
+					    <div class="mb-3">
+			                <label for="actors" class="form-label">Acteurs</label>
+			                <select id="actors" class="form-select" multiple th:field="*{actors}">
+			                    <option th:each="actor: ${actors}" th:value="${actor.id}" th:text="${actor.lastName+' '+actor.firstName}" ></option>
+			                </select>
+		              	</div>   
+					    
+					    <div class="mb-3">
+			                <label for="director" class="form-label">Réalisateur</label>
+			                <select id="director" class="form-select" th:field="*{director}">
+			                    <option th:each="director: ${actors}" th:value="${director.id}" th:text="${director.lastName+' '+director.firstName}" ></option>
+			                </select>
+		              	</div>
+					    
+					    <div class="mb-3">
+					    	<button type="submit" class="btn btn-primary">Ajouter</button>
+						</div>
+					</form>
+				</div>
 				
-			    <div class="form-group">
-			    	<label for="synopsis" class="form-label mt-4">Synopsis : </label>
-			    	<textarea class="form-control"  th:field="*{synopsis}" id="synopsis" rows="3"></textarea>
-			    	
-			   		<span class="text-danger col-6" th:if="${#fields.hasErrors('synopsis')}">
-			   			<ul>
-			   				<li th:each="error: ${#fields.errors('synopsis')}" th:text="${error}"></li>
-			   			</ul>
-			   		</span>
-			    </div>
-			    
-			    <div class="mb-3">
-	                <label for="actors" class="form-label">Acteurs</label>
-	                <select id="actors" class="form-control" multiple >
-	                    <option th:each="actor: ${actors}" 
-	                            th:value="${actor.id}" 
-	                            th:text="${actor.lastName+' '+actor.firstName}" ></option>
-	                </select>
-              	</div>   
-			    
-			    <div class="mb-3">
-	                <label for="director" class="form-label">Réalisateur</label>
-	                <select id="director" class="form-control" >
-	                    <option th:each="director: ${actors}" 
-	                            th:value="${director.id}" 
-	                            th:text="${director.lastName+' '+director.firstName}" ></option>
-	                </select>
-              	</div>   
-			    
-			    
-			    <button type="submit" class="btn btn-primary">Ajouter</button> 
-			</div>
-		</fieldset>
-	</form>
-
-	
-	
-	<!-- 
-	<div class="container-fluid">
-        <header></header>
-        <main>
-           <div class="row text-center">
-            <h1>Détails du film</h1>
-           </div>             
-           <div class="row col-6 offset-3" th:object="${film}">
-              <div class="mb-3">
-                <label for="titre" class="form-label">Titre</label>
-                <input type="text" readonly class="form-control" id="titre" th:field="*{titre}" >
-              </div>
-              <div class="mb-3">
-                <label for="annee" class="form-label">Année</label>
-                <input type="text" readonly class="form-control" id="annee" th:field="*{annee}" >
-              </div> 
-              <div class="mb-3">
-                <label for="duree" class="form-label">Durée</label>
-                <input type="text" readonly class="form-control" id="duree" th:field="*{duree}">
-              </div>   
-              <div class="mb-3">
-                <label for="synopsis" class="form-label">Synopsis</label>
-                <textarea id="synopsis" readonly class="form-control" rows="3" th:field="*{synopsis}" ></textarea>
-              </div>  
-              <div class="mb-3">
-                <label for="genre" class="form-label">Genre</label>
-                <input type="text" readonly class="form-control" id="genre"  th:field="*{genre.libelle}" />
-              </div> 
-               <div class="mb-3">
-                <label for="realisateur" class="form-label">Réalisateur</label>
-                <input type="text"  class="form-control" id="realisateur" th:value="*{realisateur.nom+' '+realisateur.prenom}" />
-              </div> 
-              <div class="mb-3">
-                <label for="acteurs" class="form-label">Acteurs</label>
-                <select id="acteurs" readonly class="form-control" multiple >
-                    <option th:each="acteur: ${film.acteurs}" 
-                            th:value="${acteur.id}" 
-                            th:text="${acteur.nom+' '+acteur.prenom}" ></option>
-                </select>
-              </div>                                                                                    
-           </div>
-        </main>
-        <footer></footer>
-    </div>
-	
-	
-	 -->
-	
-	
-</body>
+		</main>
+		<footer></footer>
+		</div>
+	</body>
 </html>
