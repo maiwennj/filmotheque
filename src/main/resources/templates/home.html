@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<meta charset="UTF-8">
 		<title>Y en a</title>
@@ -10,17 +10,35 @@
 			<header th:replace="fragments/general.html :: header"> </header>
 			<main>
 				<div class="row text-center">
-					<h1>Liste des films</h1>			
+					<h1>J'y trouve un goût de pomme</h1>			
 				</div>
-				<table>
-					<tr th:each="film:${films}">
-						<td><a th:href="@{'/film/detail/'+${film.id}}">[[${film.title}]]</a></td> 
-						<td th:text="${film.releaseYear}"></td>
-						<td>[[${film.duration}]] minutes</td>
-						<td th:text="${film.synopsis}"></td>
-					</tr>
-				</table>
-			</main>
+	           	<div class="row col-6 offset-3" >
+	                <table class="table table-primary">
+	                    <thead>
+	                        <tr>
+	                            <th>ID</th>
+	                            <th>Titre</th>
+	                            <th>Genre</th>
+	                            <th>Durée</th>
+	                            <th>Réalisateur</th>
+	                            <th>Actions</th>
+	                        </tr>                        
+	                    </thead>
+	                    <tbody>
+	                        <tr th:each="film: ${films}" th:object="${film}" >
+	                            <td th:text="*{id}" ></td>
+	                            <td th:text="*{title}" ></td>
+	                            <td th:text="*{genre.label}" ></td>
+	                            <td th:text="*{duration}" ></td>
+	                            <td th:text="*{director.firstName+' '+director.lastName}" ></td>
+	                            <td>
+	                                <a th:href="@{'/films/detail/'+${film.id}}" class="btn btn-info">Détails</a>
+	                            </td>
+	                        </tr>
+	                    </tbody>
+	                </table>                                                                              
+	           </div>
+        	</main>	
 		</div>
 	</body>
 </html>

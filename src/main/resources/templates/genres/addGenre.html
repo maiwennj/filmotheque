@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>Ajouter un genre</title>
+		<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
+	</head>
+	<body>
+		<div class="container-fluid">
+			<header th:replace="fragments/general.html :: header"> </header>
+			<main>
+				<div class="row text-center">
+					<h1>Ajouter un genre</h1>			
+				</div>
+				<div class="row col-6 offset-3">
+					<form th:action="@{/genres/ajouter}" th:object=${genre} method="post" >
+						<div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
+							<p>Il y a eu une erreur</p>
+						</div>
+						
+		              	<div class="mb-3">
+			                <label for="label" class="form-label">Libellé : </label>
+			                <input type="text" class="form-control" id="label" th:field="*{label}" >
+		            	</div>
+		           		<span class="text-danger col-6" th:if="${#fields.hasErrors('label')}">
+				   			<ul>
+				   				<li th:each="error: ${#fields.errors('label')}" th:text="${error}"></li>
+				   			</ul>
+				   		</span> 
+			            
+					    <div class="mb-3">
+						    <button type="submit" class="btn btn-primary">Ajouter</button>
+					    </div>
+					</form>
+				</div>
+			</main>
+		</div>
+	</body>
+</html>

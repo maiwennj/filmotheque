@@ -9,7 +9,7 @@ import fr.eni.filmotheque.bo.Author;
 import fr.eni.filmotheque.bo.Film;
 import fr.eni.filmotheque.bo.Genre;
 
-@Service
+@Service("MOCK")
 public class FilmServiceMock implements FilmService{
 	
 	List<Film> listFilms = new ArrayList<Film>();
@@ -22,7 +22,7 @@ public class FilmServiceMock implements FilmService{
 	}
 
 	@Override
-	public Film selectOneById(int id) {
+	public Film selectOneById(Integer id) {
 		for (Film film : listFilms) {
 			if(film.getId()==id) {
 				return film;
@@ -42,13 +42,13 @@ public class FilmServiceMock implements FilmService{
 	}
 
 	@Override
-	public Genre getGenreById(int id) {
+	public Genre getGenreById(Integer id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Author getAuthorById(int id) {
+	public Author getAuthorById(Integer id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
